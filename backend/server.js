@@ -1,15 +1,17 @@
 let express = require("express")
 let notes = require("./data/notes")
 let dotenv = require("dotenv")
+let connectDb = require("./config/db")
 
 let app = express()
 dotenv.config()
+connectDb()
 app.get("/",(req,res)=>{
   res.send("<h1>API started</h1>")
 })
 
 app.get("/api/notes",(req,res)=>{
-   res.send(notes)
+   res.json(notes)
 })
 
 app.get("/api/notes/:id",(req,res)=>{
